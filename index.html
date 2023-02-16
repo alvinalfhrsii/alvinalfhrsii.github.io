@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PSB</title>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <!-- icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script
+      src="https://kit.fontawesome.com/f658435cdd.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar Start-->
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <img src="img/logo-header.png" alt="" />
+        <div class="logo">
+          <a href="#" class="logo-text-satu">PRAMUKA SPENSA BUA</a>
+          <a href="#" class="logo-text-dua"
+            ><marquee behavior="" direction="">
+              Indonesia Scout Movement</marquee
+            ></a>
+        </div>
+      </div>
+      <div class="navbar-nav">
+        <div class="row">
+          <a href="#home">Beranda</a>
+          <a href="#profil">Profil</a>
+          <a href="#info">Info</a>
+          <a href="#contact">Galeri</a>
+        </div>
+        <div class="nav-social">
+          <a href="#" id="ig-logo"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" id="yt-logo"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" id="fb-logo"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" id="tt-logo"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="navbar-extra">
+        <a href="#" id="search"><i data-feather="search"></i></a>
+        <a href="#tes" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- section hero start -->
+    <section class="hero" id="home">
+      <canvas id="starfield"></canvas>
+      <main class="content">
+        <div class="row">
+          <h1>Gugus Depan</h1>
+          <h2>SMP NEGERI 1 BUA<br><span>13.005-13.006</span></h2>
+          <p>SATYAKU KUDHARMAKAN DHARMAKU KUBAKTIKAN</p>
+        </div>
+        <img src="img/icon1-hero 1.svg" alt="" />
+      </main>
+    </section>
+    <!-- section hero end -->
+
+    <!-- section profile start -->
+    <section class="profile" id="profil">
+      <div class="container"></div>
+    </section>
+    <!-- section profile end -->
+    <script>
+      feather.replace();
+    </script>
+
+    <!-- myjavascript -->
+    <script src="js/script.js"></script>
+    <script>
+      window.addEventListener("load", function () {
+        const canvas = document.getElementById("starfield");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const context = canvas.getContext("2d");
+        const totalStars = 50;
+        const stars = [];
+        for (let i = 0; i < totalStars; i++) {
+          stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() + 1,
+            speed: Math.random() * 1 + 1,
+          });
+        }
+        function animate() {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          for (const star of stars) {
+            context.beginPath();
+            context.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+            context.fillStyle = "white";
+            context.fill();
+            star.x -= star.speed;
+            if (star.x < 0) {
+              star.x = canvas.width;
+            }
+          }
+          requestAnimationFrame(animate);
+        }
+        animate();
+      });
+    </script>
+  </body>
+</html>
